@@ -1,3 +1,4 @@
 {
-  "cmake.sourceDirectory": "${workspaceFolder}/source"
+  "cmake.sourceDirectory": "${workspaceFolder}/source",
+  "cmake.configureArgs": ["-DWEEK=week1"]
 }

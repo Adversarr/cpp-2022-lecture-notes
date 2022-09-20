@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.18)
 
 project(cpp2022_all)
 
@@ -53,8 +53,10 @@ function(build_all)
   endforeach()
 endfunction()
 
-if(${WEEK})
+if(DEFINED WEEK)
+  message(STATUS "Week: ${WEEK}")
   build_week("${CMAKE_CURRENT_SOURCE_DIR}/${WEEK}")
 else()
+  message(STATUS "configure all.")
   build_all()
 endif()
