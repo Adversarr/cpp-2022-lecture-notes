@@ -47,7 +47,7 @@ function(build_all)
   file(GLOB groups LIST_DIRECTORIES true ${CMAKE_CURRENT_SOURCE_DIR}/*)
 
   foreach(w IN LISTS groups)
-    build_week(w)
+    build_week(${w})
   endforeach()
 endfunction()
 if (${WEEK})
