@@ -1,0 +1,10 @@
+name: cpp-build
+on: [push]
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: configure
+        run: cmake -S source -B build
+      - name: build
+        run: cmake --build build --target all

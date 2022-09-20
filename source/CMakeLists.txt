@@ -50,6 +50,10 @@ function(build_all)
     build_week(w)
   endforeach()
 endfunction()
+if (${WEEK})
+  build_week("${CMAKE_CURRENT_SOURCE_DIR}/${WEEK}")
+else()
+  build_all()
+endif()
 
-build_week("${CMAKE_CURRENT_SOURCE_DIR}/week1")
 
