@@ -9,19 +9,20 @@ function(add_task week task)
     if(EXISTS "${task_dir}/CMakeLists.txt")
       add_subdirectory(${task_dir})
     else()
-      if(NOT EXISTS ${task_dir}/include)
-        message(FATAL_ERROR "${week} ${task} include not found")
-      endif()
-
       if(NOT EXISTS ${task_dir}/source)
         message(FATAL_ERROR "${week} ${task} source not found")
       endif()
 
-      file(GLOB headers ${task_dir}/include)
-      file(GLOB sources ${task_dir}/source)
+      file(GLOB sources ${task_dir}/source/*)
       add_executable(${week}_${task} ${sources})
-      message(STATUS "=> Executable: ${week}_${task}")
-      target_include_directories(${week}_${task} PUBLIC ${task_dir}/include)
+      message(STATUS "=> Executable: ${week}_${task}; Source file(s): ${sources}")
+
+      if(EXISTS ${task_dir}/include)
+        target_include_directories(${week}_${task} PUBLIC ${task_dir}/include)
+      else()
+        message(STATUS ":: No headers.")
+      endif()
+
       set_target_properties(${week}_${task} PROPERTIES
         CXX_STANDARD 17
         LINKER_LANGUAGE CXX)
@@ -30,9 +31,10 @@ function(add_task week task)
 endfunction()
 
 function(build_week w)
-  message(STATUS ":: Entering ${w}")
   if(IS_DIRECTORY ${w})
+    message(STATUS ":: Entering ${w}")
     file(GLOB tasks LIST_DIRECTORIES true ${w}/*)
+
     foreach(t IN LISTS tasks)
       if(IS_DIRECTORY ${t})
         file(RELATIVE_PATH week ${CMAKE_CURRENT_SOURCE_DIR} ${w})
@@ -50,10 +52,9 @@ function(build_all)
     build_week(${w})
   endforeach()
 endfunction()
-if (${WEEK})
+
+if(${WEEK})
   build_week("${CMAKE_CURRENT_SOURCE_DIR}/${WEEK}")
 else()
   build_all()
 endif()
-
-
