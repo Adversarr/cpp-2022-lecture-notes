@@ -6,15 +6,6 @@ categories: CATEGORY-1 CATEGORY-2
 
 # Lecture 1
 
-inline math $123$
-
 ```cpp
-int x;
+good;
 ```
-
-
-block math:
-
-$$
-123
-$$
