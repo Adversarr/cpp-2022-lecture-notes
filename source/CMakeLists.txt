@@ -1,0 +1,55 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(cpp2022_all)
+
+function(add_task week task)
+  set(task_dir ${CMAKE_CURRENT_SOURCE_DIR}/${week}/${task})
+
+  if(EXISTS ${task_dir})
+    if(EXISTS "${task_dir}/CMakeLists.txt")
+      add_subdirectory(${task_dir})
+    else()
+      if(NOT EXISTS ${task_dir}/include)
+        message(FATAL_ERROR "${week} ${task} include not found")
+      endif()
+
+      if(NOT EXISTS ${task_dir}/source)
+        message(FATAL_ERROR "${week} ${task} source not found")
+      endif()
+
+      file(GLOB headers ${task_dir}/include)
+      file(GLOB sources ${task_dir}/source)
+      add_executable(${week}_${task} ${sources})
+      message(STATUS "=> Executable: ${week}_${task}")
+      target_include_directories(${week}_${task} PUBLIC ${task_dir}/include)
+      set_target_properties(${week}_${task} PROPERTIES
+        CXX_STANDARD 17
+        LINKER_LANGUAGE CXX)
+    endif()
+  endif()
+endfunction()
+
+function(build_week w)
+  message(STATUS ":: Entering ${w}")
+  if(IS_DIRECTORY ${w})
+    file(GLOB tasks LIST_DIRECTORIES true ${w}/*)
+    foreach(t IN LISTS tasks)
+      if(IS_DIRECTORY ${t})
+        file(RELATIVE_PATH week ${CMAKE_CURRENT_SOURCE_DIR} ${w})
+        file(RELATIVE_PATH task ${w} ${t})
+        add_task(${week} ${task})
+      endif()
+    endforeach(t)
+  endif()
+endfunction()
+
+function(build_all)
+  file(GLOB groups LIST_DIRECTORIES true ${CMAKE_CURRENT_SOURCE_DIR}/*)
+
+  foreach(w IN LISTS groups)
+    build_week(w)
+  endforeach()
+endfunction()
+
+build_week("${CMAKE_CURRENT_SOURCE_DIR}/week1")
+
