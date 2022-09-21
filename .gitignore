@@ -15,4 +15,5 @@ cmake-build-*
 Gemfile.lock
 vendor
 .vs
+.DS_Store
 out
