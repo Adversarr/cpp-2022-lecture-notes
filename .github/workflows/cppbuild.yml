@@ -20,8 +20,9 @@ jobs:
         uses: thedoctor0/zip-release@main
         with:
           type: 'zip'
-          filename: '${{ github.ref_name }}.zip'
-          directory: "source"
+          filename: 'AssignmentReference.zip'
+          directory: "${{ github.workspace }}"
+          path: "source"
       - name: Create Release and Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
@@ -30,7 +31,7 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            ${{ github.ref_name }}.zip
+            AssignmentReference.zip
             LICENSE
 
         
