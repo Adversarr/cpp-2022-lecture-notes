@@ -14,3 +14,5 @@ out
 cmake-build-*
 Gemfile.lock
 vendor
+.vs
+out
