@@ -11,14 +11,29 @@ jobs:
         run: cmake -S ${{ github.workspace }}/source -B build
       - name: build
         run: cmake --build build --target all
-
-      - if: ${{ github.ref_type == "tag" }}
-        name: Archive the release
+  tag-job:
+    if: ${{ github.ref_type == 'tag'}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Archive the release
         uses: thedoctor0/zip-release@main
         with:
           type: 'zip'
           filename: '${{ github.ref_name }}.zip'
           directory: "source"
+      - name: Create Release and Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          name: release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            ${{ github.ref_name }}.zip
+            LICENSE
+
+        
   unix-job:
     runs-on: macos-latest
     steps:
