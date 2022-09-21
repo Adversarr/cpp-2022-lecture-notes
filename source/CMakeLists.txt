@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.18)
 
 project(cpp2022_all)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common)
+
 function(add_task week task)
   set(task_dir ${CMAKE_CURRENT_SOURCE_DIR}/${week}/${task})
 

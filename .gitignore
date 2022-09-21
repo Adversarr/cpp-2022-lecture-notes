@@ -12,3 +12,5 @@ _deps
 build
 out
 cmake-build-*
+Gemfile.lock
+vendor
