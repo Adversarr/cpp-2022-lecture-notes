@@ -1,8 +1,9 @@
 name: cpp-build
 on: [push]
+
+
 jobs:
   ubuntu-job:
-    name: configure and build on ubuntu
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -10,35 +11,28 @@ jobs:
         run: cmake -S ${{ github.workspace }}/source -B build
       - name: build
         run: cmake --build build --target all
-  windows-job:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Display the path by pwsh
-        run: echo ${env:PATH}
-        shell: pwsh
-      - name: Display github.workspace by pwsh
-        run: |
-          echo "github.workspace is ${{ github.workspace }}."
-          ls ${{ github.workspace }}
-      - name: CMake Configure
-        run: cmake -S ${{ github.workspace }}/source -B ${{ github.workspace }}/build
-      - name: Archive release
+
+      - if: ${{ github.ref_type == "tag" }}
+        name: Archive the release
         uses: thedoctor0/zip-release@main
         with:
           type: 'zip'
           filename: '${{ github.ref_name }}.zip'
-          directory: "${{ github.workspace }}"
-          path: "build"
-      - name: Create Release and Upload Release Asset
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref }}
-          name: release ${{ github.ref }}
-          draft: false
-          prerelease: false
-          files: |
-            ${{ github.ref_name }}.zip
-            LICENSE
-
-        
+          directory: "source"
+  unix-job:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: configure
+        run: cmake -S ${{ github.workspace }}/source -B build
+      - name: build
+        run: cmake --build build --target all
+ 
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: CMake Configure
+        run: cmake -S ${{ github.workspace }}/source -B ${{ github.workspace }}/build
+      - name: CMake Build
+        run: cmake --build ${{ github.workspace }}/build --target all
