@@ -10,5 +10,11 @@ int main()
                 "float(a + b) / 2 + int(x) % int(y)"
                 "\" is: "
              << (float(a + b) / 2 + int(x) % int(y)) << std ::endl;
+  CHECK_EXPR(++a || ++b);
+  CHECK_EXPR(a);
+  CHECK_EXPR(b);
+  CHECK_EXPR(0 * (a ++));
+  CHECK_EXPR(-'a');
+  CHECK_EXPR(a);
   return 0;
 }
