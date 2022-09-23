@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <cstdlib>
 
 bool is_palindrome(int x) {
   x = std::abs(x);
@@ -25,7 +26,6 @@ int main() {
 
   if (! file.is_open()) {
     std::cout << "Error when open output file" << std::endl;
-    std::cout << std::strerror(errno) << std::endl;
     std::exit(-1);
   }
 

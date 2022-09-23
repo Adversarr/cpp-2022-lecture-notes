@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
-
+#include <iomanip>
+#include <cstdlib>
 /**
  * Newton for f(x) = x^2 - N:
       x[n+1] = x[n] - f(x[n]) / f'(x[n]);
