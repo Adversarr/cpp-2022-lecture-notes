@@ -26,6 +26,8 @@ void print_iteration(std::ostream &stream, int n, double value, int count) {
 }
 
 void print_init(std::ostream &stream) {
+  // Notice: this file is encoded with utf-8, add /utf-8 compile option
+  // if you are using MSVC.
   stream << std::setw(10) << "序号";
   stream << std::setw(11) << "正整数";
   stream << std::setw(13) << "平方根";

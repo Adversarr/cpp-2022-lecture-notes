@@ -4,6 +4,10 @@ project(cpp2022_all)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common)
 
+if (MSVC)
+  message(NOTICE "Fucking MSVC. (set /utf-8 option)")
+  add_compile_options(/utf-8)
+endif()
 
 
 function(add_task week task)
@@ -29,7 +33,7 @@ function(add_task week task)
 
       if (EXISTS ${task_dir}/asset)
         target_compile_definitions(${week}_${task} PUBLIC ASSET_DIR="${task_dir}/asset")
-        message(STATUS ":: Target asset is set.")
+        message(STATUS ":: Target asset is set to ${task_dir}/asset")
       endif()
 
       set_target_properties(${week}_${task} PROPERTIES

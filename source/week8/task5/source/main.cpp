@@ -10,6 +10,7 @@ bool is_palindrome(int x) {
   int len = 0;
   while(x > 0) {
     numbers[len] = x % 10;
+    x /= 10;
     len += 1;
   }
 
