@@ -4,6 +4,8 @@ project(cpp2022_all)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/common)
 
+
+
 function(add_task week task)
   set(task_dir ${CMAKE_CURRENT_SOURCE_DIR}/${week}/${task})
 
@@ -23,6 +25,11 @@ function(add_task week task)
         target_include_directories(${week}_${task} PUBLIC ${task_dir}/include)
       else()
         message(STATUS ":: No headers.")
+      endif()
+
+      if (EXISTS ${task_dir}/asset)
+        target_compile_definitions(${week}_${task} PUBLIC ASSET_DIR="${task_dir}/asset")
+        message(STATUS ":: Target asset is set.")
       endif()
 
       set_target_properties(${week}_${task} PROPERTIES
