@@ -17,3 +17,4 @@ vendor
 .vs
 .DS_Store
 out
+.cache

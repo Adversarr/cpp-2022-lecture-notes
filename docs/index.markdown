@@ -19,4 +19,8 @@ References:
 3. [The Cherno](https://www.bilibili.com/video/BV1gk4y1r7UH): some video can make sure you can get familiar with C++ as quick as possible.
 4. More C++: [Cpp 100 -- __gkxx -- 上海科技大学](https://space.bilibili.com/1656746432/video)
 
+Several Ideas:
+
+1. RAII
+
 ---

@@ -6,7 +6,7 @@
 bool is_palindrome(int x) {
   x = std::abs(x);
   // `int` ranges from [-2^31, 2^31)
-  int numbers[sizeof(int) * 10 / 3 + 2];
+  int numbers[11];
   int len = 0;
   while(x > 0) {
     numbers[len] = x % 10;
@@ -35,6 +35,8 @@ int main() {
       file << i << std::endl;
     }
   }
+  // Acturally, there is no need for closing the file. (See RAII in C++)
+  // but closing the file explicitly is a good manner.
   file.close();
   return 0;
 }
