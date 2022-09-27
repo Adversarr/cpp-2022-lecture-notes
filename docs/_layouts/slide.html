@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    {% seo %}
+
+    <link rel="stylesheet" href="{{ "/assets/reveal.js/dist/reset.css" | prepend: site.baseurl }}"/>
+    <link rel="stylesheet" href="{{ "/assets/reveal.js/dist/reveal.css" | prepend: site.baseurl }}"/>
+    <link rel="stylesheet" href="{{ "/assets/reveal.js/dist/theme/black.css" | prepend: site.baseurl }}"/>
+    <link rel="stylesheet" href="{{ "/assets/reveal.js/plugin/highlight/monokai.css" | prepend: site.baseurl }}"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        {{ content }}
+      </div>
+    </div>
+
+    <script src="{{ "/assets/reveal.js/dist/reveal.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/assets/reveal.js/plugin/notes/notes.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/assets/reveal.js/plugin/markdown/markdown.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ '/assets/reveal.js/plugin/highlight/highlight.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/assets/reveal.js/plugin/search/search.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/assets/reveal.js/plugin/zoom/zoom.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/assets/reveal.js/plugin/math/math.js' | prepend: site.baseurl }}"></script>
+
+
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        // Display presentation control arrows
+        controls: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Push each slide change to the browser history.  Implies `hash: true`
+        history: false,
+
+        transition: "slide",
+
+        // Can be used to limit the contexts in which the slide number appears
+        // - "all":      Always show the slide number
+        // - "print":    Only when printing to PDF
+        // - "speaker":  Only in the speaker view
+        showSlideNumber: 'all',
+
+        // https://revealjs.com/plugins/#built-in-plugins
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath
+        ]
+      });
+    </script>
+
+    
+  </body>
+</html>
