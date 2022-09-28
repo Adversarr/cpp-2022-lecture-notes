@@ -4,7 +4,8 @@
 
 layout: home
 ---
-<h1>About the class...</h1>
+
+<h1>About this course</h1>
 
 Useful Links:
 
