@@ -11,6 +11,9 @@ int main() {
   while(! input_file.eof()) {
     int x;
     input_file >> x;
+    if (! input_file.good()) {
+      break;
+    }
     n += 1;
     sum += x;
     if (x < 0) {
