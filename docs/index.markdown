@@ -20,8 +20,15 @@ References:
 3. [The Cherno](https://www.bilibili.com/video/BV1gk4y1r7UH): some video can make sure you can get familiar with C++ as quick as possible.
 4. More C++: [Cpp 100 -- __gkxx -- 上海科技大学](https://space.bilibili.com/1656746432/video)
 
-Several Ideas:
+READ AND REMEMBER:
 
-1. RAII
+1. RTFSC
+2. STFW
+3. RTFM
+4. [提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)
+5. [别像弱智一样提问](https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways/blob/master/README.md)
+6. [学术诚信(什么事情能做, 什么不能)](http://integrity.mit.edu/)
+
+> Ref: [ICS2022](https://nju-projectn.github.io/ics-pa-gitbook/ics2022/index.html)I
 
 ---
