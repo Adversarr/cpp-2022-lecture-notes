@@ -55,6 +55,7 @@ void case7() {
 }
 
 int main() { 
+  int x = 1;
   std::cout << "case 1:" << std::endl; case1();
   std::cout << "case 2:" << std::endl; case2();
   std::cout << "case 3:" << std::endl; case3();
