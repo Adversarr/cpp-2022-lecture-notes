@@ -3,8 +3,8 @@
 #include <iostream>
 using namespace std;
 
-const double beta = 0.0001;
-const double gamma = 0.01;
+const double BETA = 0.0001;
+const double GAMMA = 0.01;
 
 struct State {
   double s;
@@ -13,9 +13,9 @@ struct State {
 };
 
 State update(const State &state) {
-  State next_state{.s = -beta * state.s * state.i + state.s,
-                   .i = beta * state.i * state.s - gamma * state.i + state.i,
-                   .r = gamma * state.i + state.r};
+  State next_state{.s = -BETA * state.s * state.i + state.s,
+                   .i = BETA * state.i * state.s - GAMMA * state.i + state.i,
+                   .r = GAMMA * state.i + state.r};
 
   return next_state;
 }
