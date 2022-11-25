@@ -25,7 +25,7 @@ void stu_exchange(Student &lhs, Student &rhs) {
 
 int main(void) {
   Student stu1, stu2;
-  exchange(stu1, stu2);
+  stu_exchange(stu1, stu2);
   return 0;
 }
 
