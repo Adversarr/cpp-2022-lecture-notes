@@ -13,9 +13,9 @@ struct State {
 };
 
 State update(const State &state) {
-  State next_state{.s = -BETA * state.s * state.i + state.s,
-                   .i = BETA * state.i * state.s - GAMMA * state.i + state.i,
-                   .r = GAMMA * state.i + state.r};
+  State next_state{-BETA * state.s * state.i + state.s,
+                   BETA * state.i * state.s - GAMMA * state.i + state.i,
+                   GAMMA * state.i + state.r};
 
   return next_state;
 }
