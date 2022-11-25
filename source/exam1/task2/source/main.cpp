@@ -29,7 +29,7 @@ void print_state(const State &state, int day) {
 }
 
 int main() {
-  State current_state{.s = 500, .i = 500, .r = 0};
+  State current_state{500, 500, 0};
   cout << setw(10) << "day" << setw(10) << "Sn" << setw(10) << "Rn" << setw(10)
        << "In" << endl;
   for (int day = 1; day <= 100; ++day) {
