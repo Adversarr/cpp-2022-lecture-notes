@@ -54,6 +54,8 @@ public:
            (point1_.getY() - point4_.getY());
   }
 };
+
+
 int main() {
   Point p1(-15, 56), p2(89, -10); // 定义两个点
   Point p3;
