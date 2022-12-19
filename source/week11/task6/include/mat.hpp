@@ -1,5 +1,7 @@
 #include <iomanip>
 #include <iostream>
+
+// compile time literal
 #define MAX_SIZE 10
 
 class Matrix {
@@ -10,6 +12,17 @@ private:
 
 public:
   Matrix(int rows = 0, int cols = 0) : rows_(rows), cols_(cols) {}
+
+  Matrix(const Matrix& another) {
+    rows_ = another.rows_;
+    cols_ = another.cols_;
+    for (int i = 0; i < rows_; ++i) {
+      for (int j = 0; j < cols_; ++j) {
+        data_[i][j] = another.data_[i][j];
+      }
+    }
+  }
+
   Matrix(double *data, int rows = 0, int cols = 0) : rows_(rows), cols_(cols) {
     for (int i = 0; i < rows_; ++i) {
       for (int j = 0; j < cols_; ++j) {
