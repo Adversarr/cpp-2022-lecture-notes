@@ -79,7 +79,9 @@ public:
   }
 
   String &operator=(const String &rhs) {
-    Copy(rhs);
+    if (& rhs != this) {
+      Copy(rhs);
+    }
     return *this;
   }
 

@@ -28,12 +28,19 @@ Client::Client() {
 
 Client::Client(int nID, const char *str) {
 //补充必要代码
+  id = nID;
+  assert(strlen(str) < 20);
+  strcpy(name, str);
+  score = 0;
 }
 
 
 void Client::set(int nID, const char *str)
 {
 //补充必要代码
+  id = nID;
+  assert(strlen(str) < 20);
+  strcpy(name, str);
 }
 
 char * Client::getname() {
@@ -41,7 +48,14 @@ char * Client::getname() {
 }
 
 // 补充完成 display函数，能够输出客户 编号， 姓名，积分值
+void Client::display() {
+  std::cout << "Client [id="<< id << " name=" << name << " score=" << score << "]" << std::endl; 
+}
+
 // 补充完成 消费函数consume， 根据消费满100元获得1积分计算。
+void Client::consume(double n) {
+  score += 0.01 * n;
+}
 
 
 class VIPClient: public Client {
@@ -61,7 +75,7 @@ public:
 		return validity;
 	}
 	// 补充函数 consume
-	void consume(double n);     //客户VIP消费，每满50元累计一个积分
+	void consume(double n) { score += n * .02;}     //客户VIP消费，每满50元累计一个积分
 
 	void display()        //输出对象的全部数据
 	{
@@ -78,8 +92,12 @@ VIPClient::VIPClient()
 
 // 补充函数，根据主函数调用的consumeandshow形式和功能，实现多态完成根据消费金额，计算积分和输出客户信息
 // consumeandshow 形参为，传递客户对象和消费金额。
+void consumeandshow(Client& client, double n) {
+  client.consume(n);
+  client.display();
+}
 
-void main(void)
+int main(void)
 {
 	Client clientarray[2];
 	VIPClient VIParray[2];
@@ -104,7 +122,6 @@ void main(void)
 		cin>> name>>ID>>date>>discount;
 		VIParray[i].set(ID, name);
 		VIParray[i].changeinfo(date,discount);
-
 	}
 
 	//普通客户和VIP客户各自消费1000元后，积分计算和信息输出

@@ -30,7 +30,13 @@ class GStudent : public UStudent
 	bool bTeaching, bResearch;                               //增加成员：教学实践和科研实践考核结果，通过与否
 public:              
 	//添加代码，补充必要成员函数                       
+	GStudent(string id = "", string name= "", double cred=0, bool teaching=false, bool research=false);     //构造函数，初始化学号、姓名及学分
+  void Check() override;
+  void Print() override; 
+
+  void SetGStu(string id = "", string name= "", double cred=0, bool teaching=false, bool research=false);
 };
+
 
 /*--------定义UStudent类成员函数-----------*/
 UStudent::UStudent(string id, string name, double cred)      //构造函数
@@ -50,7 +56,7 @@ void UStudent::SetUStu(string id, string name, double cred)  //修改基本信�
 void UStudent::Check()                                        //毕业审核
 {
 	//添加代码
-  bResult = dCredits > 160.0;
+  bResult = dCredits > 60.0;
 }
 void UStudent::Print()                                        //输出所有信息
 {
@@ -59,13 +65,39 @@ void UStudent::Print()                                        //输出所有信�
 
 /*-------定义GStudent类成员函数-------*/
 //添加代码，定义类中的成员函数，包括构造函数，修改成员数据、重构毕业审核及输出信息
+void GStudent::Check() {
+  UStudent::Check();
+  SetResult(bResearch && bTeaching && UStudent::GetResult());
+}
+
+void GStudent::Print() {
+  std::cout << "GStudent: teach? " << std::boolalpha << bTeaching << "\tresearch? " << bResearch << endl;
+  UStudent::Print();
+}
+
+GStudent::GStudent(string id, string name, double cred, bool teaching, bool research):
+  UStudent(id, name, cred), bTeaching(teaching), bResearch(research)
+{
+  // NOTHING TODO
+} 
+
+void GStudent::SetGStu(string id, string name, double cred, bool teaching, bool research) {
+  UStudent::SetUStu(id, name, cred);
+  bTeaching = teaching;
+  bResearch = research;
+}
 
 
 //添加代码：定义统一接口GraduationCheck函数，实现运行时多态，对不同对象进行毕业审核。
-void GraduationCheck(const UStudent& stu) {
+void GraduationCheck(/* const */ UStudent* stu) {
+  stu->Check();
 }
 
+
 //添加代码：定义统一接口Display函数，实现运行时多态，支持不同对象的信息输出。
+void Display(/* const */ UStudent& stu) {
+  stu.Print();
+}
 
 //对以上函数的提示：使用基类指针或基类引用，作为操作对象的参数，并调用基类的虚函数
 
