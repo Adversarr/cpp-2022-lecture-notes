@@ -1,5 +1,6 @@
 #include "student.hpp"
 #include <iostream>
+#include <cstring>
 
 void Student::Print() {
   std::cout << "{id = " << id_ << ", name = '" << name_ << "', math = " << math_
