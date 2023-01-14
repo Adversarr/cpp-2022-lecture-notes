@@ -1,6 +1,7 @@
 #include "string"
 #include <cmath>
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 // 判断数组内容是否为从大到小排序的函数模板  isDecSorted
